@@ -1,0 +1,245 @@
+
+Streamlining Ticket Assignment for Efficient Support Operations
+
+Problem statement:
+The objective of this initiative is to implement an automated system for ticket routing at ABC Corporation, aimed at improving operational efficiency by accurately assigning support tickets to the appropriate teams. This solution aims to reduce delays in issue resolution, enhance customer satisfaction, and optimize resource utilization within the support department.
+
+Objective:
+The objective of this initiative is to implement an automated ticket routing system within ServiceNow at ABC Corporation, aimed at enhancing operational efficiency by accurately and intelligently assigning support tickets to the appropriate teams. This solution will reduce delays in issue resolution, improve SLA compliance, enhance customer satisfaction, and optimize resource utilization within the support department.
+
+TASK INITIATION
+  Activity 1 : Create users
+1.	 Open service now.
+2.	Click on All  >> search for users
+3.	Select Users under system security
+4.	Click on new
+5.	Fill the following details to create a new user 
+6.	Click on submit
+
+7.	Create one more user:
+8.	Create another user with the following details
+      
+9.	 Click on submit
+
+
+Activity 2 : Create Groups
+
+
+1.	Open service now.
+2.	Click on All  >> search for groups
+3.	Select groups under system security
+4.	Click on new
+5.	Fill the following details to create a new group 
+6.	Click on submit
+
+
+Create one more group:
+
+
+7.	Create another group with the following details
+
+ 
+
+8.	Click on submit
+
+Activity 3 : Create Roles
+1.	Open service now.
+2.	Click on All  >> search for roles
+3.	Select roles under system security
+4.	Click on new
+5.	Fill the following details to create a new role
+ 
+6.	Click on submit
+
+ Create one more role:
+ Create another role with the following details 
+ 
+7.	Click on submit
+
+Activity 4 : Create Table
+1.	Open service now.
+2.	Click on All  >> search for tables
+3.	Select tables under system definition
+4.	Click on new
+5.	Fill the following details to create a new table
+Label : Operations related
+Check the boxes Create module & Create mobile module
+6.	Under new menu name : Operations related
+7.	Under table columns give the columns
+ 
+8.	Click on submit
+Create choices for the issue filed by using form design
+Choices are
+
+•	unable to login to platform
+•	404 error
+•	regarding certificates
+•	regarding user expired
+
+
+Activity 4 : Assign roles & users to groups
+
+     Assign roles & users to certificate group
+1.	Open service now.
+2.	Click on All  >> search for tables
+3.	Select tables under system definition
+4.	Select the certificates group 
+5.	Under group members
+6.	Click on edit
+7.	Select Katherine Pierce and save
+8.	Click on roles
+9.	Select Certification_role and save 
+
+
+
+Assign roles & users to platform group:
+1.	Open service now.
+2.	Click on All  >> search for tables
+3.	Select tables under system definition
+4.	Select the platform group 
+5.	Under group members
+6.	Click on edit
+7.	Select Manne Niranjan and save
+8.	Click on roles
+9.	Select Platform_role and save 
+
+Activity 4 : Assign role to table
+1.	Open service now.
+2.	Click on All  >> search for tables
+3.	Select operations related table
+4.	Click on the Application Access
+5.	Click on u_operations_related read operation
+6.	Click on the profile on top right side
+7.	Click on elevate role
+8.	Click on security admin and click on update
+9.	Under Requires role
+10.	Double click on insert a new row
+11.	Give platform role
+12.	And add certificate role
+13.	Click on update
+
+
+
+ 
+14.	 Click on u_operations_related write operation
+15.	 Under Requires role
+16.	 Double click on insert a new row
+17.	 Give platform role
+18.	 And add certificate role
+
+
+Activity 5 : Create ACL
+
+1.	Open service now.
+2.	Click on All  >> search for ACL
+3.	Select Access Control(ACL) under system security
+4.	Click on new
+5.	Fill the following details to create a new ACL
+ 
+6.	Scroll down under requires role
+7.	Double click on insert a new row
+8.	Give admin role
+9.	Click on submit
+10.	Similarly create 4 acl for the following fields
+ 
+
+
+Activity 6 : Flow
+Create a Flow to Assign operations ticket to group
+
+1.	Open service now.
+2.	Click on All  >> search for Flow Designer 
+3.	Click on Flow Designer under Process Automation.
+4.	After opening Flow Designer Click on new and select Flow.
+5.	Under Flow properties Give Flow Name as “ Regarding Certificate”.
+6.	Application should be Global.
+7.	Select Run user as “ System user ” from that choice.
+8.	Click on Submit.
+ 
+ 
+ 
+
+
+
+1.	Click on Add a trigger 
+2.	Select the trigger in that Search for “create or update a record”  and select that.
+3.	Give the table name as “ Operations related ”.
+4.	Give the Condition as
+Field : issue
+Operator : is
+Value : Regrading Certificates
+5.	After that click on Done.
+ 
+6.	Now under Actions.
+7.	Click on Add an action.
+8.	Select action in that search for “ Update Record ”.
+9.	In Record field drag the fields from the data navigation from left side
+10.	Table will be auto assigned after that 
+11.	Give the field as “ Assigned to group ”
+12.	Give value as “ Certificates ”
+13.	Click on Done.
+14.	Click on Save to save the Flow.
+15.	Click on Activate.
+ 
+
+
+
+
+
+ 
+
+Create a Flow to Assign operations ticket to Platform group:
+1.	Open service now.
+2.	Click on All  >> search for Flow Designer 
+3.	Click on Flow Designer under Process Automation.
+4.	After opening Flow Designer Click on new and select Flow.
+5.	Under Flow properties Give Flow Name as “ Regarding Platform ”.
+6.	Application should be Global.
+7.	Select Run user as “ System user ” from that choice.
+8.	Click on Submit.
+
+
+1.	Click on Add a trigger 
+2.	Select the trigger in that Search for “create or update a record”  and select that.
+3.	Give the table name as “ Operations related ”.
+4.	Give the Condition as
+Field : issue
+Operator : is
+Value : Unable to login to platform
+5.	Click on New Criteria
+Field : issue
+Operator : is
+Value : 404 Error
+6.	Click on New Criteria
+Field : issue
+Operator : is
+Value : Regrading User expired 
+
+
+7.	After that click on Done.
+8.	Now under Actions.
+9.	Click on Add an action.
+10.	Select action in that search for “ Update Record ”.
+11.	In Record field drag the fields from the data navigation from left side
+12.	Table will be auto assigned after that 
+13.	Give the field as “ Assigned to group ”.
+14.	Give value as “ Platform ”.
+15.	Click on Done.
+16.	Click on Save to save the Flow.
+17.	Click on Activate
+
+
+
+ 
+
+
+
+
+
+ 
+
+ 
+
+Conclusion :
+The implementation of the automated ticket routing system at ABC Corporation has been a significant success. By leveraging the capabilities of ServiceNow, we have streamlined the process of assigning support tickets to the appropriate teams, addressing the challenges of manual routing, and ensuring timely resolution of issues.
+
